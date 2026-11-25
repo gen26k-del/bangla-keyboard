@@ -2936,25 +2936,29 @@ PickDone := false
 LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
-SCRIPT_VERSION := 7
+ShowSugBox := false
+SCRIPT_VERSION := 8
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
 BoundaryChars := " .,!?;:'()[]{}<>/-_=+|@#$%^&*~" . Chr(34) . Chr(92) . Chr(96) . Chr(0x0964)
 
 LoadSettings() {
-    global IniFile, ActiveProfile, Enabled
+    global IniFile, ActiveProfile, Enabled, ShowSugBox
     ActiveProfile := IniRead(IniFile, "Settings", "ActiveProfile", ActiveProfile)
     en := IniRead(IniFile, "Settings", "Enabled", "1")
     Enabled := (en == "1")
+    sb := IniRead(IniFile, "Settings", "ShowSugBox", "0")
+    ShowSugBox := (sb == "1")
     LoadProfiles()
     LoadLearned()
 }
 
 SaveSettings() {
-    global IniFile, ActiveProfile, Enabled
+    global IniFile, ActiveProfile, Enabled, ShowSugBox
     IniWrite(ActiveProfile, IniFile, "Settings", "ActiveProfile")
     IniWrite(Enabled ? "1" : "0", IniFile, "Settings", "Enabled")
+    IniWrite(ShowSugBox ? "1" : "0", IniFile, "Settings", "ShowSugBox")
 }
 
 LoadProfiles() {
@@ -3055,7 +3059,7 @@ BufBackspace() {
 }
 
 ShowSug() {
-    global WordBuf, SugList, SugVisible
+    global WordBuf, SugList, SugVisible, ShowSugBox
     if (WordBuf == "") {
         HideSug()
         return
@@ -3063,6 +3067,10 @@ ShowSug() {
     SugList := Suggest(WordBuf, 3, true)
     if (SugList.Length == 0) {
         HideSug()
+        return
+    }
+    if (!ShowSugBox) {
+        SugVisible := false
         return
     }
     txt := ""
@@ -3121,7 +3129,9 @@ CycleSug() {
 }
 
 ShowCycleTip() {
-    global LastSugList, LastSugIdx
+    global LastSugList, LastSugIdx, ShowSugBox
+    if (!ShowSugBox)
+        return
     txt := ""
     for i, s in LastSugList {
         mark := (i == LastSugIdx) ? "> " : "  "
@@ -3210,6 +3220,15 @@ ToggleMode() {
     BuildTray()
     ToolTip(Enabled ? U("09AC09BE098209B209BE") : "EN")
     SetTimer(() => ToolTip(), -900)
+}
+
+ToggleSugBox() {
+    global ShowSugBox
+    ShowSugBox := !ShowSugBox
+    if (!ShowSugBox)
+        HideSug()
+    SaveSettings()
+    BuildTray()
 }
 
 PickBangla(word, title) {
@@ -3343,7 +3362,7 @@ CheckUpdate(manual := false) {
 
 ; ---------- tray & learned-words window ----------
 BuildTray() {
-    global Enabled, Profiles, ActiveProfile
+    global Enabled, Profiles, ActiveProfile, ShowSugBox
     toggleLabel := U("09AC09BE098209B209BE002009AE09CB09A10020099A09BE09B209C1002F09AC09A809CD09A700200028004600390029")
     A_TrayMenu.Delete()
     A_TrayMenu.Add(toggleLabel, (*) => ToggleMode())
@@ -3362,6 +3381,10 @@ BuildTray() {
     A_TrayMenu.Add(U("09B609C7099609BE002009B609AC09CD09A6002009A609C7099609C109A8"), (*) => ShowLearned())
     A_TrayMenu.Add(U("09B609C7099609BE09A800200028004300740072006C002B0041006C0074002B004C0029"), (*) => TeachWord())
     A_TrayMenu.Add(U("09B609C709B7002009B609AC09CD09A6002009A009BF09950020099509B009C109A800200028004300740072006C002B0041006C0074002B00460029"), (*) => FixLast())
+    sugLabel := U("09B809BE099C09C709B609A8002009AC09BE099509CD09B8002009A609C7099609BE09A8")
+    A_TrayMenu.Add(sugLabel, (*) => ToggleSugBox())
+    if (ShowSugBox)
+        A_TrayMenu.Check(sugLabel)
     A_TrayMenu.Add(U("098609AA09A109C7099F0020099A09C709950020099509B009C109A8"), (*) => CheckUpdate(true))
     A_TrayMenu.Add()
     A_TrayMenu.Add(U("09AC09A809CD09A70020099509B009C109A80020002800450078006900740029"), (*) => ExitApp())
