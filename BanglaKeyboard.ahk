@@ -2937,7 +2937,7 @@ LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
 ShowSugBox := false
-SCRIPT_VERSION := 8
+SCRIPT_VERSION := 9
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
@@ -3328,7 +3328,7 @@ CheckUpdate(manual := false) {
     global SCRIPT_VERSION, VER_URL, FILE_URL
     try {
         tmpVer := A_Temp . "\bk_ver.txt"
-        Download(VER_URL, tmpVer)
+        Download(VER_URL . "?t=" . A_TickCount, tmpVer)
         newVer := Trim(FileRead(tmpVer))
         if (!IsInteger(newVer)) {
             if (manual)
@@ -3344,7 +3344,7 @@ CheckUpdate(manual := false) {
         if (r != "Yes")
             return
         tmpFile := A_Temp . "\BanglaKeyboard_new.ahk"
-        Download(FILE_URL, tmpFile)
+        Download(FILE_URL . "?t=" . A_TickCount, tmpFile)
         content := FileRead(tmpFile)
         if (!InStr(content, "SCRIPT_VERSION")) {
             MsgBox(U("098609AA09A109C7099F002009AC09CD09AF09B009CD09A5002009B909AF09BC09C70964"), "BanglaKeyboard", "Iconx")
