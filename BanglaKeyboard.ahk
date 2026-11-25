@@ -279,7 +279,7 @@ SortFuzzy(arr) {
     }
 }
 
-Suggest(word, limit) {
+Suggest(word, limit, strict := false) {
     global Learned, Dict, DictKeys, PrevBangla, Followers
     out := []
     if (word == "")
@@ -293,7 +293,7 @@ Suggest(word, limit) {
             PushSug(out, seen, b)
     }
     PushSug(out, seen, ConvertWord(word))
-    if (StrLen(key) >= 2) {
+    if (!strict && StrLen(key) >= 2) {
         pre := []
         for dk in DictKeys {
             if (StrLen(dk) > StrLen(key) && SubStr(dk, 1, StrLen(key)) == key)
@@ -309,7 +309,7 @@ Suggest(word, limit) {
                 PushSug(out, seen, b)
         }
     }
-    if (StrLen(key) >= 4 && out.Length < limit) {
+    if (!strict && StrLen(key) >= 4 && out.Length < limit) {
         fz := []
         for fk in DictKeys {
             if (fk == key)
@@ -2763,7 +2763,7 @@ PickDone := false
 LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
-SCRIPT_VERSION := 3
+SCRIPT_VERSION := 4
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
@@ -2887,7 +2887,7 @@ ShowSug() {
         HideSug()
         return
     }
-    SugList := Suggest(WordBuf, 5)
+    SugList := Suggest(WordBuf, 3, true)
     if (SugList.Length == 0) {
         HideSug()
         return
