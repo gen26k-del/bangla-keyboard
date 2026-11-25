@@ -3350,6 +3350,17 @@ Dict["toto"] := [U("09A409A4")]
 Dict["totoi"] := [U("09A409A40987")]
 Dict["totodin"] := [U("09A409A409A609BF09A8")]
 Dict["totokhon"] := [U("09A409A4099509CD09B709A3")]
+Dict["tour"] := [U("099F09CD09AF09C109B0")]
+Dict["tours"] := [U("099F09CD09AF09C109B0")]
+Dict["travel"] := [U("099F09CD09B009BE09AD09C709B2")]
+Dict["trip"] := [U("099F09CD09B009BF09AA")]
+Dict["tor"] := [U("09A409CB09B0")]
+Dict["tora"] := [U("09A409CB09B009BE")]
+Dict["tore"] := [U("09A409CB09B009C7")]
+Dict["ghurte"] := [U("099809C109B009A409C7")]
+Dict["berate"] := [U("09AC09C709A109BC09BE09A409C7")]
+Dict["bhromon"] := [U("09AD09CD09B009AE09A3")]
+Dict["vromon"] := [U("09AD09CD09B009AE09A3")]
 DictKeys := []
 for k, v in Dict
     DictKeys.Push(k)
@@ -3432,7 +3443,7 @@ LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
 ShowSugBox := false
-SCRIPT_VERSION := 14
+SCRIPT_VERSION := 15
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
