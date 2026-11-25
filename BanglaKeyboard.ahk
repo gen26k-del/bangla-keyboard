@@ -311,7 +311,7 @@ Suggest(word, limit, strict := false) {
         for b in Dict[key]
             PushSug(out, seen, b)
     }
-    PushSug(out, seen, ConvertWord(word))
+    PushSug(out, seen, strict ? Direct(word) : ConvertWord(word))
     if (!strict && StrLen(key) >= 2) {
         pre := []
         for dk in DictKeys {
@@ -2646,7 +2646,7 @@ Dict["tai"] := [U("09A409BE0987")]
 Dict["taka"] := [U("099F09BE099509BE")]
 Dict["takben"] := [U("09A509BE099509AC09C709A8")]
 Dict["takbo"] := [U("09A509BE099509AC09CB")]
-Dict["take"] := [U("09A509BE099509C7")]
+Dict["take"] := [U("09A509BE099509C7"), U("09A409BE099509C7")]
 Dict["taki"] := [U("09A509BE099509BF")]
 Dict["tako"] := [U("09A509BE099509CB")]
 Dict["takte"] := [U("09A509BE099509A409C7")]
@@ -2858,6 +2858,25 @@ Dict["zonno"] := [U("099C09A809CD09AF")]
 Dict["zonogon"] := [U("099C09A8099709A3")]
 Dict["zore"] := [U("099C09CB09B009C7")]
 Dict["zuddho"] := [U("09AF09C109A609CD09A7")]
+Dict["amake"] := [U("098609AE09BE099509C7")]
+Dict["amaka"] := [U("098609AE09BE099509C7")]
+Dict["tomake"] := [U("09A409CB09AE09BE099509C7")]
+Dict["tomaka"] := [U("09A409CB09AE09BE099509C7")]
+Dict["apnake"] := [U("098609AA09A809BE099509C7")]
+Dict["apnaka"] := [U("098609AA09A809BE099509C7")]
+Dict["nijeka"] := [U("09A809BF099C09C7099509C7")]
+Dict["onnoka"] := [U("098509A809CD09AF099509C7")]
+Dict["jaka"] := [U("09AF09BE099509C7")]
+Dict["amaderke"] := [U("098609AE09BE09A609C709B0099509C7")]
+Dict["amaderka"] := [U("098609AE09BE09A609C709B0099509C7")]
+Dict["tomader"] := [U("09A409CB09AE09BE09A609C709B0")]
+Dict["tomaderke"] := [U("09A409CB09AE09BE09A609C709B0099509C7")]
+Dict["tomaderka"] := [U("09A409CB09AE09BE09A609C709B0099509C7")]
+Dict["taderke"] := [U("09A409BE09A609C709B0099509C7")]
+Dict["taderka"] := [U("09A409BE09A609C709B0099509C7")]
+Dict["apnader"] := [U("098609AA09A809BE09A609C709B0")]
+Dict["apnaderke"] := [U("098609AA09A809BE09A609C709B0099509C7")]
+Dict["apnaderka"] := [U("098609AA09A809BE09A609C709B0099509C7")]
 DictKeys := []
 for k, v in Dict
     DictKeys.Push(k)
@@ -2917,7 +2936,7 @@ PickDone := false
 LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
-SCRIPT_VERSION := 6
+SCRIPT_VERSION := 7
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
