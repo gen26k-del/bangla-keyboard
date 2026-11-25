@@ -2704,6 +2704,27 @@ Dict["lagche"] := [U("09B209BE0997099B09C7")]
 Dict["laglo"] := [U("09B209BE099709B209CB")]
 Dict["lagbe"] := [U("09B209BE099709AC09C7")]
 Dict["lagse"] := [U("09B209BE0997099B09C7")]
+Dict["nia"] := [U("09A809BF09AF09BC09C7")]
+Dict["niya"] := [U("09A809BF09AF09BC09C7")]
+Dict["gia"] := [U("099709BF09AF09BC09C7")]
+Dict["dia"] := [U("09A609BF09AF09BC09C7")]
+Dict["hoia"] := [U("09B909AF09BC09C7")]
+Dict["esia"] := [U("098F09B809C7")]
+Dict["ashia"] := [U("098F09B809C7")]
+Dict["koria"] := [U("099509B009C7")]
+Dict["bolia"] := [U("09AC09B209C7")]
+Dict["dekhia"] := [U("09A609C7099609C7")]
+Dict["shunia"] := [U("09B609C109A809C7")]
+Dict["likhia"] := [U("09B209BF099609C7")]
+Dict["poria"] := [U("09AA09A109BC09C7")]
+Dict["khaia"] := [U("099609C709AF09BC09C7")]
+Dict["jaia"] := [U("09AF09C709AF09BC09C7")]
+Dict["bujhia"] := [U("09AC09C1099D09C7")]
+Dict["jania"] := [U("099C09C709A809C7")]
+Dict["kheye"] := [U("099609C709AF09BC09C7")]
+Dict["jeye"] := [U("09AF09C709AF09BC09C7")]
+Dict["jene"] := [U("099C09C709A809C7")]
+Dict["mone"] := [U("09AE09A809C7")]
 DictKeys := []
 for k, v in Dict
     DictKeys.Push(k)
@@ -2763,7 +2784,7 @@ PickDone := false
 LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
-SCRIPT_VERSION := 4
+SCRIPT_VERSION := 5
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
