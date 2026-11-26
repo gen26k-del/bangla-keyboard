@@ -4413,6 +4413,12 @@ Dict["namlam"] := [U("09A809BE09AE09B209BE09AE")]
 Dict["laglam"] := [U("09B209BE099709B209BE09AE")]
 Dict["koi"] := [U("09950987")]
 Dict["koy"] := [U("09950987")]
+Dict["basto"] := [U("09AC09CD09AF09B809CD09A4")]
+Dict["besto"] := [U("09AC09CD09AF09B809CD09A4")]
+Dict["byasto"] := [U("09AC09CD09AF09B809CD09A4")]
+Dict["best"] := [U("09AC09CD09AF09B809CD09A4"), U("09AC09C709B809CD099F")]
+Dict["bastota"] := [U("09AC09CD09AF09B809CD09A409A409BE")]
+Dict["bestota"] := [U("09AC09CD09AF09B809CD09A409A409BE")]
 DictKeys := []
 for k, v in Dict
     DictKeys.Push(k)
@@ -4503,7 +4509,7 @@ LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
 ShowSugBox := false
-SCRIPT_VERSION := 23
+SCRIPT_VERSION := 24
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
