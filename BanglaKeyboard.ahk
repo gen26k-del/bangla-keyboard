@@ -4411,12 +4411,15 @@ Dict["kinlo"] := [U("099509BF09A809B209CB")]
 Dict["thamlo"] := [U("09A509BE09AE09B209CB")]
 Dict["namlam"] := [U("09A809BE09AE09B209BE09AE")]
 Dict["laglam"] := [U("09B209BE099709B209BE09AE")]
+Dict["koi"] := [U("09950987")]
+Dict["koy"] := [U("09950987")]
 DictKeys := []
 for k, v in Dict
     DictKeys.Push(k)
 
 ; ---------- sentence context (bigram + followers) ----------
 Bigram := Map()
+Bigram[U("09950987") . "|aso"] := U("0986099B09CB")
 Bigram[U("098609B0") . "|kasi"] := U("099509BE09B609BF")
 Bigram[U("09AA09BE09AF09BC09C7") . "|kada"] := U("099509BE09A609BE")
 Bigram[U("098609B0") . "|mas"] := U("09AE09BE099B")
@@ -4500,7 +4503,7 @@ LastSugList := []
 LastSugIdx := 0
 PrevBangla := ""
 ShowSugBox := false
-SCRIPT_VERSION := 22
+SCRIPT_VERSION := 23
 VER_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/version.txt"
 FILE_URL := "https://raw.githubusercontent.com/gen26k-del/bangla-keyboard/main/BanglaKeyboard.ahk"
 CoordMode("ToolTip", "Screen")
